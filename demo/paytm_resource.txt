@@ -1,0 +1,42 @@
+*** Settings ***
+Library           AppiumLibrary
+Library           Selenium2Library
+#| Library | Selenium2Library | run_on_failure=AppiumLibrary.CapturePageScreenshot
+#| Library | AppiumLibrary | run_on_failutre=AppiumLibrary.CapturePageScreenshot
+| Suite Setup | Set Library Search Order | AppiumLibrary | Selenium2Library
+
+*** Variables ***
+${REMOTE_URL}     http://localhost:4723/wd/hub
+${PLATFORM_NAME}    Android
+${PLATFORM_VERSION}    6.0.1
+${DEVICE_NAME}    2a007419
+
+${Username}       student2
+${Password}       Testing1
+${Browser}        CHROME
+${SiteUrl}        http://demo.mahara.org
+${DashboardTitle}    Dashboard - Mahara
+${Delay}          5s  
+
+*** Keywords ***
+Open Browser to the Login Page
+    Selenium2Library.open browser    ${SiteUrl}    ${Browser}
+    Maximize Browser Window
+
+Enter User Name
+    Selenium2Library.Input Text    login_login_username    ${Username}
+
+Enter Password
+    Selenium2Library.Input Text    login_login_password    ${Password}
+
+   
+
+
+		
+paytm credentials
+    [Arguments]    ${user_name}    ${password}    
+    AppiumLibrary.Open Application  ${REMOTE_URL}  platformName=Android  platformVersion=${PLATFORM_VERSION}  deviceName=2a007419    automationName=appium  appPackage=net.one97.paytm    appActivity=AJRJarvisSplash
+    AppiumLibrary.Click Element    id=net.one97.paytm:id/edit_username
+    AppiumLibrary.Input Text    id=net.one97.paytm:id/edit_username    ${user_name}
+    AppiumLibrary.Input Text    id=net.one97.paytm:id/edit_password    ${password}
+    

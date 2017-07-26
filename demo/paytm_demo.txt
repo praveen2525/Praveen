@@ -1,0 +1,16 @@
+*** Settings ***
+Resource          ${CURDIR}/paytm_resource.txt
+
+*** Test Cases ***
+LoginTest
+    Open Browser to the Login Page
+    Enter User Name
+    Enter Password
+   
+    sleep    ${Delay}
+
+paytm credentials
+    [Documentation]    demo for android_contacts
+    [Tags]    demo
+    paytm credentials    8892501639    praveen2525
+   
